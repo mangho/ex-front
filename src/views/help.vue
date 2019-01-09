@@ -117,7 +117,7 @@ export default {
       this.getPicNum();
       setTimeout(() => {
         this.picN=9;
-      }, 20);
+      }, 2);
     },
     async getImg() {
       try {

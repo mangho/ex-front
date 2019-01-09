@@ -15,6 +15,10 @@ library.add(fas)
 Vue.component('fa-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false
+router.beforeEach((to, from, next) => {
+  window.document.title = to.meta.title;
+  next()
+})
 Vue.use(api)
 new Vue({
   router,
