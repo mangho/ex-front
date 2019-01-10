@@ -5,7 +5,6 @@
       <fa-icon icon="spinner" spin/>
     </h2>
     <h2 v-else>{{msg}}</h2>
-    <h3>{{mm}}</h3>
     <v-btn :loading="loadingPost" :disabled="loadingPost" round color="primary" @click="getMsg()">
       <fa-icon icon="arrow-alt-circle-right" fixed-width/>get post
     </v-btn>
@@ -39,9 +38,7 @@
       </v-flex>
     </v-layout>
     <v-layout row v-if="items">
-      <code xs12>
-          {{items}}
-      </code>
+      <code xs12>{{items}}</code>
     </v-layout>
     <v-layout row wrap>
       <v-flex v-for="item in img" :key="item.id" xs4 d-flex>
@@ -69,12 +66,11 @@ export default {
       loadingPost: false,
       loaderPhoto: null,
       loadingPhoto: false,
-      items:'',
-      mm: "eeee",
+      items: "",
       msg: "",
       img: "",
       imgNum: "",
-      picN:'',
+      picN: ""
     };
   },
   created() {
@@ -107,8 +103,8 @@ export default {
     }
   },
   methods: {
-    initData(){
-      Object.assign(this.$data, this.$options.data())
+    initData() {
+      Object.assign(this.$data, this.$options.data());
     },
     async getMsg() {
       try {
@@ -116,7 +112,6 @@ export default {
         this.msg = "";
         let res = await this.$api.jsonplaceholder.getPosts1();
         this.msg = res.title;
-        this.mm = "hoooooo";
         this.loaderPost = null;
       } catch (e) {
         this.loaderPost = null;
@@ -127,35 +122,36 @@ export default {
       this.imgNum = Math.floor(Math.random() * 11);
     },
     async getPicsum() {
-      this.picN='';
+      this.picN = "";
       this.getPicNum();
       setTimeout(() => {
-        this.picN=9;
+        this.picN = 9;
       }, 2);
     },
     async getImg() {
+      this.loaderPhoto = "loading";
+      this.img = "";
+      let res;
       try {
-        this.loaderPhoto = "loading";
-        this.img = "";
-        let res = await this.$api.jsonplaceholder.getPhotos();
-        let arr = [];
-        for (let i = 0; i < 9; i++) {
-          arr.push(res[i]);
-        }
-        this.img = arr;
-        this.loaderPhoto = null;
+        res = await this.$api.jsonplaceholder.getPhotos();
       } catch (e) {
-        this.loaderPhoto = null;
         console.log(e);
       }
+      this.loaderPhoto = null;
+      let arr = [];
+      for (let i = 0; i < 9; i++) {
+        arr.push(res[i]);
+      }
+      this.img = arr;
+      this.loaderPhoto = null;
     },
-    async getlocalTest(){
-      try{
-      this.items='';
-        let res = await this.$api.local.getData('getJson');
-        this.items=res
-      }catch(e){
-        console.log(e)
+    async getlocalTest() {
+      try {
+        this.items = "";
+        let res = await this.$api.local.getData("getJson");
+        this.items = res;
+      } catch (e) {
+        console.log(e);
       }
     }
   }
