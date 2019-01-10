@@ -5,21 +5,23 @@
       <fa-icon icon="spinner" spin/>
     </h2>
     <h2 v-else>{{msg}}</h2>
-    <v-btn :loading="loadingPost" :disabled="loadingPost" round color="primary" @click="getMsg()">
-      <fa-icon icon="arrow-alt-circle-right" fixed-width/>get post
-    </v-btn>
-    <v-btn :loading="loadingPhoto" :disabled="loadingPhoto" round color="dark" @click="getImg()">
-      <fa-icon icon="arrow-alt-circle-right" fixed-width/>get photopalceholder
-    </v-btn>
-    <v-btn round dark color="purple" @click="getPicsum()">
-      <fa-icon icon="arrow-alt-circle-right" fixed-width/>get picsum
-    </v-btn>
-    <v-btn round dark color="blue" @click="getlocalTest()">
-      <fa-icon icon="arrow-alt-circle-right" fixed-width/>get local
-    </v-btn>
-    <v-btn round dark color="dark" @click="initData()">
-      <fa-icon icon="arrow-alt-circle-right" fixed-width/>init data
-    </v-btn>
+    <v-btn
+      :loading="loadingPost"
+      :disabled="loadingPost"
+      round
+      color="primary"
+      @click="getMsg()"
+    >get post</v-btn>
+    <v-btn
+      :loading="loadingPhoto"
+      :disabled="loadingPhoto"
+      round
+      color="dark"
+      @click="getImg()"
+    >get photopalceholder</v-btn>
+    <v-btn round dark color="purple" @click="getPicsum()">get picsum</v-btn>
+    <v-btn round dark color="blue" @click="getlocalTest()">get local</v-btn>
+    <v-btn round dark color="dark" @click="initData()">init data</v-btn>
 
     <v-layout row wrap v-if="picN">
       <v-flex v-for="n in picN" :key="n" xs4 d-flex>
@@ -107,16 +109,17 @@ export default {
       Object.assign(this.$data, this.$options.data());
     },
     async getMsg() {
+      this.loaderPost = "loading";
+      this.msg = "";
+      let res;
       try {
-        this.loaderPost = "loading";
-        this.msg = "";
-        let res = await this.$api.jsonplaceholder.getPosts1();
-        this.msg = res.title;
-        this.loaderPost = null;
+        res = await this.$api.jsonplaceholder.getPosts1();
       } catch (e) {
-        this.loaderPost = null;
         console.log(e);
       }
+      this.loaderPost = null;
+      this.msg = res.title;
+      this.loaderPost = null;
     },
     getPicNum() {
       this.imgNum = Math.floor(Math.random() * 11);
@@ -146,13 +149,14 @@ export default {
       this.loaderPhoto = null;
     },
     async getlocalTest() {
+      this.items = "";
+      let res;
       try {
-        this.items = "";
-        let res = await this.$api.local.getData("getJson");
-        this.items = res;
+        res = await this.$api.local.getData("getJson");
       } catch (e) {
         console.log(e);
       }
+      this.items = res;
     }
   }
 };
