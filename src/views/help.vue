@@ -15,6 +15,12 @@
     <v-btn round dark color="purple" @click="getPicsum()">
       <fa-icon icon="arrow-alt-circle-right" fixed-width/>get picsum
     </v-btn>
+    <v-btn round dark color="blue" @click="getlocalTest()">
+      <fa-icon icon="arrow-alt-circle-right" fixed-width/>get local
+    </v-btn>
+    <v-btn round dark color="dark" @click="initData()">
+      <fa-icon icon="arrow-alt-circle-right" fixed-width/>init data
+    </v-btn>
 
     <v-layout row wrap v-if="picN">
       <v-flex v-for="n in picN" :key="n" xs4 d-flex>
@@ -32,7 +38,11 @@
         </v-card>
       </v-flex>
     </v-layout>
-
+    <v-layout row>
+      <code xs12>
+          {{items}}
+      </code>
+    </v-layout>
     <v-layout row wrap>
       <v-flex v-for="item in img" :key="item.id" xs4 d-flex>
         <v-card flat tile class="d-flex">
@@ -59,6 +69,7 @@ export default {
       loadingPost: false,
       loaderPhoto: null,
       loadingPhoto: false,
+      items:'',
       mm: "eeee",
       msg: "",
       img: "",
@@ -96,6 +107,9 @@ export default {
     }
   },
   methods: {
+    initData(){
+      Object.assign(this.$data, this.$options.data())
+    },
     async getMsg() {
       try {
         this.loaderPost = "loading";
@@ -133,6 +147,15 @@ export default {
       } catch (e) {
         this.loaderPhoto = null;
         console.log(e);
+      }
+    },
+    async getlocalTest(){
+      try{
+      this.items='';
+        let res = await this.$api.local.getData('getJson');
+        this.items=res
+      }catch(e){
+        console.log(e)
       }
     }
   }
