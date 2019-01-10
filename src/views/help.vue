@@ -38,7 +38,7 @@
         </v-card>
       </v-flex>
     </v-layout>
-    <v-layout row>
+    <v-layout row v-if="items">
       <code xs12>
           {{items}}
       </code>
