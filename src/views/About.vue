@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-carousel hide-controls 
+    <v-carousel hide-controls class="round-deli"
     delimiter-icon="·"
   >
     <v-carousel-item
@@ -36,3 +36,11 @@ export default {
     }
 }
 </script>
+<style>
+.round-deli .v-btn__content .v-icon{
+  width: 6px;
+  height: 6px;
+  border-radius: 6px;
+  background-color: white;
+}
+</style>
