@@ -1,7 +1,7 @@
 <template>
   <v-container class="help">
     <h1>This is an help page</h1>
-    <h2 v-if="noData">
+    <h2 v-if="noData" class="test-color-1">
       no data
     </h2>
     <h2 v-else><fa-icon icon="spinner" spin fixed-width/>{{msg}}</h2>
@@ -161,3 +161,8 @@ export default {
   }
 };
 </script>
+<style>
+.test-color-1{
+  color:#139755;
+}
+</style>
