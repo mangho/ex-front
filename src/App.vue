@@ -72,7 +72,7 @@ export default {
         },
         {
           action: "mask",
-          title: "Help",
+          title: "Components",
           path: "/help"
         }
       ]

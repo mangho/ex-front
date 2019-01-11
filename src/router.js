@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-const hostName="Koa test"
+const hostName="Vuetify test"
 Vue.use(Router)
 
 export default new Router({
@@ -27,7 +27,7 @@ export default new Router({
       path: '/help',
       name: 'help',
       meta: {
-        title: hostName+' - GET方法'
+        title: hostName+' - 测试组件'
       },
       component: () => import( './views/help.vue')
     }
