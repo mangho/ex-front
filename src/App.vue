@@ -19,14 +19,14 @@
 
     <div class="hide-overflow" style="position: relative;">
       <v-toolbar color="teal darken-4" fixed dark>
-        <v-btn color="dark" outline round @click.stop="drawer = !drawer">menu</v-btn>
+        <v-btn color="dark" class="hidden-sm-and-up" outline round @click.stop="drawer = !drawer">menu</v-btn>
 
         <router-link to="/"><v-img :src="require('@/assets/logo.svg')" class="my-1" contain height="40" width="40"></v-img></router-link>
 
         <v-toolbar-title>Title</v-toolbar-title>
 
         <v-spacer></v-spacer>
-        <v-toolbar-items class="hidden-sm-and-down">
+        <v-toolbar-items class="hidden-xs-only">
           <template v-for="(item, index) in items">
             <v-btn flat v-if="item.action" :key="item.title" @click="toPage(item)">{{item.title}}</v-btn>
             <v-divider v-else-if="item.divider" :key="index"></v-divider>
