@@ -5,7 +5,7 @@ const hostName="Vuetify test"
 Vue.use(Router)
 
 export default new Router({
-  // mode: 'history',
+  // mode: 'history',/* 使用history模式就不能自定义输出路径publicPath  */
   routes: [
     {
       path: '/',
