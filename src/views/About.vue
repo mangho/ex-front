@@ -6,6 +6,10 @@
 
     <v-layout row>
       <v-flex xs12>
+        <v-btn color="info" @click="change()">change store</v-btn>
+        {{count}}
+      </v-flex>
+      <v-flex xs12>
         <v-alert :value="true" type="success">This is a success alert.</v-alert>
 
         <v-alert :value="true" type="info">This is a info alert.</v-alert>
@@ -37,7 +41,17 @@ export default {
       ]
     };
   },
-  created() {}
+  created() {},
+  computed: {
+    count() {
+      return this.$store.state.count;
+    }
+  },
+  methods: {
+    change() {
+      this.$store.commit("increment");
+    }
+  }
 };
 </script>
 <style>

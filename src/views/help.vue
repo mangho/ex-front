@@ -1,6 +1,7 @@
 <template>
   <v-container class="help">
     <h1>This is an help page<fa-icon icon="spinner" spin fixed-width/></h1>
+    <h3>{{count}}</h3>
     <h2 v-if="noData" class="test-color-1">
       no data
     </h2>
@@ -95,6 +96,7 @@ export default {
       }
     }
   },
+  
   computed: {
     noData() {
       if (this.msg) {
@@ -102,6 +104,9 @@ export default {
       } else {
         return true;
       }
+    },
+     count() {
+      return this.$store.state.count;
     }
   },
   methods: {

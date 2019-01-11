@@ -78,6 +78,9 @@ export default {
       ]
     };
   },
+  mounted(){
+
+  },
   methods: {
     toPage(item) {
       if (item.path) {
