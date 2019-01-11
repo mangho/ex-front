@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-carousel hide-controls class="round-deli">
+    <v-carousel class="round-deli">
       <v-carousel-item v-for="(item,i) in items" :key="i" :src="item.src"></v-carousel-item>
     </v-carousel>
 
