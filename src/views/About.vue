@@ -1,7 +1,6 @@
 <template>
   <v-container>
     <v-carousel hide-controls class="round-deli"
-    delimiter-icon="·"
   >
     <v-carousel-item
       v-for="(item,i) in items"
@@ -9,6 +8,14 @@
       :src="item.src"
     ></v-carousel-item>
   </v-carousel>
+
+<v-layout justify-space-around class="my-2">
+      <span class="group pa-2">
+        <v-icon>home</v-icon>
+        <v-icon>event</v-icon>
+        <v-icon>info</v-icon>
+      </span>
+</v-layout>
 
   </v-container>
 </template>
@@ -37,10 +44,10 @@ export default {
 }
 </script>
 <style>
-.round-deli .v-btn__content .v-icon{
+/* .round-deli .v-btn__content .v-icon{
   width: 6px;
   height: 6px;
   border-radius: 6px;
   background-color: white;
-}
+} */
 </style>
