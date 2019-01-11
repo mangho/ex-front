@@ -10,11 +10,35 @@
   </v-carousel>
 
 <v-layout justify-space-around class="my-2">
-      <span class="group pa-2">
-        <v-icon>home</v-icon>
-        <v-icon>event</v-icon>
-        <v-icon>info</v-icon>
-      </span>
+     <div>
+    <v-alert
+      :value="true"
+      type="success"
+    >
+      This is a success alert.
+    </v-alert>
+
+    <v-alert
+      :value="true"
+      type="info"
+    >
+      This is a info alert.
+    </v-alert>
+
+    <v-alert
+      :value="true"
+      type="warning"
+    >
+      This is a warning alert.
+    </v-alert>
+
+    <v-alert
+      :value="true"
+      type="error"
+    >
+      This is a error alert.
+    </v-alert>
+  </div>
 </v-layout>
 
   </v-container>
