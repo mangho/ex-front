@@ -1,4 +1,4 @@
-# koa-vue
+# vuetify-test
 
 ## Project setup
 ```
