@@ -6,10 +6,11 @@
 
     <v-layout row>
       <v-flex xs12>
+        <div>
         <v-btn color="info" @click="change()">change store</v-btn>
         {{count}}
-      </v-flex>
-      <v-flex xs12>
+          
+        </div>
         <v-alert :value="true" type="success">This is a success alert.</v-alert>
 
         <v-alert :value="true" type="info">This is a info alert.</v-alert>
