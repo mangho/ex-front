@@ -1,10 +1,10 @@
 <template>
   <v-container class="help">
-    <h1>This is an help page<fa-icon icon="spinner" spin fixed-width/></h1>
-    <h3>{{count}}</h3>
-    <h2 v-if="noData" class="test-color-1">
-      no data
-    </h2>
+    <h1>This is an help page
+      <fa-icon icon="spinner" spin fixed-width/>
+    </h1>
+    <h3>store count:{{count}}</h3>
+    <h2 v-if="noData" class="test-color-1">no data</h2>
     <h2 v-else>{{msg}}</h2>
     <v-btn
       :loading="loadingPost"
@@ -13,13 +13,7 @@
       color="primary"
       @click="getMsg()"
     >get post</v-btn>
-    <v-btn
-      :loading="loadingPhoto"
-      :disabled="loadingPhoto"
-      round
-      color="dark"
-      @click="getImg()"
-    >get photopalceholder</v-btn>
+    <v-btn :loading="loadingPhoto" :disabled="loadingPhoto" round dark color="green" @click="getImg()">get photo placeholder</v-btn>
     <v-btn round dark color="purple" @click="getPicsum()">get picsum</v-btn>
     <v-btn round dark color="blue" @click="getlocalTest()">get local</v-btn>
     <v-btn round dark color="dark" @click="initData()">init data</v-btn>
@@ -96,7 +90,9 @@ export default {
       }
     }
   },
-  
+  created() {
+    this.$store.commit("setactivePage", { activePage: "Components" });
+  },
   computed: {
     noData() {
       if (this.msg) {
@@ -105,7 +101,7 @@ export default {
         return true;
       }
     },
-     count() {
+    count() {
       return this.$store.state.count;
     }
   },
@@ -167,7 +163,7 @@ export default {
 };
 </script>
 <style>
-.test-color-1{
-  color:#139755;
+.test-color-1 {
+  color: #139755;
 }
 </style>

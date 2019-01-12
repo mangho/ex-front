@@ -11,6 +11,9 @@
     name: 'home',
     components: {
       HelloWorld
+    },
+    created(){
+      this.$store.commit("setactivePage", { activePage: "Home" })
     }
   }
 </script>

@@ -18,17 +18,14 @@
     </v-navigation-drawer>
 
     <div class="hide-overflow" style="position: relative;">
-      <v-toolbar color="teal darken-4" fixed dark>
+      <v-toolbar color="indigo" fixed dark>
         <v-btn color="dark" class="hidden-sm-and-up" outline round @click.stop="drawer = !drawer">menu</v-btn>
-
         <router-link to="/"><v-img :src="require('@/assets/logo.svg')" class="my-1" contain height="40" width="40"></v-img></router-link>
-
         <v-toolbar-title>Title</v-toolbar-title>
-
         <v-spacer></v-spacer>
         <v-toolbar-items class="hidden-xs-only">
           <template v-for="(item, index) in items">
-            <v-btn flat v-if="item.action" :key="item.title" @click="toPage(item)">{{item.title}}</v-btn>
+            <v-btn flat v-if="item.action" :class="{'btn-active':activePage==item.title}" :key="item.title" @click="toPage(item)">{{item.title}}</v-btn>
             <v-divider v-else-if="item.divider" :key="index"></v-divider>
           </template>
         </v-toolbar-items>
@@ -47,6 +44,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import http from "@/api/index";
 import HelloWorld from "./components/HelloWorld";
 
@@ -78,8 +76,19 @@ export default {
       ]
     };
   },
+  created(){
+    
+  },
   mounted(){
 
+  },
+  computed:{
+     count() {
+      return this.$store.state.count;
+    },
+    activePage() {
+      return this.$store.state.activePage;
+    }
   },
   methods: {
     toPage(item) {
@@ -90,3 +99,9 @@ export default {
   }
 };
 </script>
+<style>
+.btn-active .v-btn__content{
+  border-bottom: 2px solid #2196f3;
+  color: #2196f3;
+}
+</style>
