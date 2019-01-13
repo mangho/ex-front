@@ -1,15 +1,26 @@
 <template>
   <v-container>
-    <v-carousel class="round-deli">
-      <v-carousel-item v-for="(item,i) in items" :key="i" :src="item.src"></v-carousel-item>
+    <v-carousel interval="10000" class="round-deli">
+      <v-carousel-item v-for="(item,i) in items" :key="i">
+        <v-img
+          :src="item.src"
+          :lazy-src="item.lazySrc"
+          class="grey lighten-2"
+          v-if="item.src"
+        >
+          <v-layout slot="placeholder" fill-height align-center justify-center ma-0>
+            <v-progress-circular indeterminate color="grey  darken-3"></v-progress-circular>
+          </v-layout>
+        </v-img>
+      </v-carousel-item>
     </v-carousel>
 
     <v-layout row>
       <v-flex xs12>
         <div>
-        <v-btn color="info" @click="change()">change store</v-btn>
-        {{count}}
-          
+          <v-btn color="error" @click="changePic()">change pic</v-btn>
+          <v-btn color="info" @click="change()">change store</v-btn>
+          {{count}}
         </div>
         <v-alert :value="true" type="success">This is a success alert.</v-alert>
 
@@ -23,24 +34,32 @@
   </v-container>
 </template>
 <script>
+// let nn;
+// nn=+Math.floor(Math.random()*11);
 export default {
-  data:()=> ({
-      items: [
-        {
-          src: "https://via.placeholder.com/1920x600?text=1"
-        },
-        {
-          src: "https://via.placeholder.com/1920x600?text=2"
-        },
-        {
-          src: "https://via.placeholder.com/1920x600?text=3"
-        },
-        {
-          src: "https://via.placeholder.com/1920x600?text=4"
-        }
-      ]
+  data: () => ({
+    items: [
+      {
+        src: "https://picsum.photos/1280/600?image=",
+        lazySrc: "https://picsum.photos/12/6?image="
+      },
+      {
+        src: "https://picsum.photos/1280/600?image=",
+        lazySrc: "https://picsum.photos/12/6?image="
+      },
+      {
+        src: "https://picsum.photos/1280/600?image=",
+        lazySrc: "https://picsum.photos/12/6?image="
+      },
+      {
+        src: "https://picsum.photos/1280/600?image=",
+        lazySrc: "https://picsum.photos/12/6?image="
+      }
+    ],
+    imgNum: ""
   }),
   created() {
+    this.changePic();
     this.$store.commit("setactivePage", { activePage: "About" });
   },
   computed: {
@@ -52,15 +71,15 @@ export default {
     change() {
       this.$store.commit("increment");
       // console.log(`%c custom console.log %c test-demo v0.0.1 %c`,"background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;color: #fff","background:transparent")
+    },
+    changePic() {
+      this.imgNum = Math.floor(Math.random() * 101 + 10);
+      this.items.forEach(v => {
+        v.src = "https://picsum.photos/1280/600?image=" + this.imgNum;
+        v.lazySrc = "https://picsum.photos/12/6?image=" + this.imgNum;
+        this.imgNum++;
+      });
     }
   }
 };
 </script>
-<style>
-/* .round-deli .v-btn__content .v-icon{
-  width: 6px;
-  height: 6px;
-  border-radius: 6px;
-  background-color: white;
-} */
-</style>

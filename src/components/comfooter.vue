@@ -21,7 +21,7 @@
         <strong>Mangho</strong>
       </v-flex>
     </v-layout>
-    <v-snackbar top v-model="snackbar.snackbar" :color="snackbar.color" :timeout="snackbar.timeout">
+    <v-snackbar top v-model="snackbar.snackbar" :color="snackbar.color" :timeout="snackbar.timeout" class="mt-2">
       {{ snackbar.text }}
       <v-btn icon @click="snackbar.snackbar = false"><fa-icon icon="times-circle" size="lg"></fa-icon></v-btn>
     </v-snackbar>
