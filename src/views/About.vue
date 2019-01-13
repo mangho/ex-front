@@ -24,8 +24,7 @@
 </template>
 <script>
 export default {
-  data() {
-    return {
+  data:()=> ({
       items: [
         {
           src: "https://via.placeholder.com/1920x600?text=1"
@@ -40,8 +39,7 @@ export default {
           src: "https://via.placeholder.com/1920x600?text=4"
         }
       ]
-    };
-  },
+  }),
   created() {
     this.$store.commit("setactivePage", { activePage: "About" });
   },

@@ -57,8 +57,7 @@
 </template>
 <script>
 export default {
-  data() {
-    return {
+  data:()=> ({
       loaderPost: null,
       loadingPost: false,
       loaderPhoto: null,
@@ -68,8 +67,7 @@ export default {
       img: "",
       imgNum: "",
       picN: ""
-    };
-  },
+  }),
   created() {
     this.getMsg();
     this.getPicNum;
