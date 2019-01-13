@@ -30,7 +30,7 @@
           </template>
         </v-toolbar-items>
       </v-toolbar>
-      <div id="scrolling-techniques" class="scroll-y mt-5" style="height:100%;">
+      <div id="scrolling-techniques" class="scroll-y mt-5">
         <v-container>
           <v-layout row>
             <v-flex xs12>
@@ -47,13 +47,11 @@
 <script>
 import { mapState } from 'vuex'
 import http from "@/api/index";
-// import HelloWorld from "./components/HelloWorld";
 import comfooter from "./components/comfooter";
 export default {
   name: "App",
   components: {
     comfooter
-    // HelloWorld
   },
   data:()=> ({
       drawer: null,
