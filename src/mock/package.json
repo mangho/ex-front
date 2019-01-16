@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "devjs": "json-server db.js",
+    "devjson": "json-server db.json"
+  },
+  "dependencies": {
+    "mockjs": "^1.0.1-beta3"
+  }
+}
