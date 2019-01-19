@@ -19,7 +19,7 @@
 </v-layout>
     <v-layout row>
       <v-flex xs12>
-        <div>
+        <div class="testContent">
           <v-btn color="blue" @click="testFn()">test</v-btn>
           <v-btn color="error" @click="changePic()">change pic</v-btn>
           <v-btn color="info" @click="change()">change store</v-btn>
@@ -37,8 +37,7 @@
   </v-container>
 </template>
 <script>
-// let nn;
-// nn=+Math.floor(Math.random()*11);
+import "@/assets/css/base.css";
 export default {
   data: () => ({
     testData:'',

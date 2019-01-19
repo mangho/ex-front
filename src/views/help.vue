@@ -25,6 +25,7 @@
     <v-btn round dark color="purple" @click="getPicsum()">get picsum</v-btn>
     <v-btn round dark color="blue" @click="getlocalTest()">get local news</v-btn>
     <v-btn round dark color="dark" @click="initData()">init data</v-btn>
+    <v-btn round dark color="red" @click="customFn()">custom function</v-btn>
     <!-- picsum pic -->
     <v-layout row wrap v-if="picN">
       <v-flex v-for="n in picN" :key="n" xs4 d-flex>
@@ -42,41 +43,34 @@
         </v-card>
       </v-flex>
     </v-layout>
-    <!-- sheet -->
+    <!--news sheet -->
+
+
+    <!-- local news -->
     <v-container grid-list-xl>
       <v-layout row wrap>
         <v-flex xs12 d-flex>
-          <v-layout wrap v-if="newsItems" >
+          <v-layout wrap v-if="newsItems">
             <v-flex xs3 v-for="(item,i) in newsItems" :key="i">
-              <v-img :src="item.images"></v-img>
-              <v-sheet class="d-flex" elevation="3" color="blue lighten-3">
-                <sheet-footer>{{item.title}}</sheet-footer>
-              </v-sheet>
+              <v-card>
+                <v-img :src="item.images"></v-img>
+                <v-card-title primary-title>
+                  <div>
+                    <h3 class="headline mb-0">{{item.title}}</h3>
+                    <div>{{item.desc}}</div>
+                  </div>
+                </v-card-title>
+
+                <v-card-actions>
+                  <v-btn flat color="orange">{{item.tag}}</v-btn>
+                  <v-btn flat color="orange">{{item.views}}</v-btn>
+                </v-card-actions>
+              </v-card>
             </v-flex>
           </v-layout>
         </v-flex>
       </v-layout>
     </v-container>
-    <!-- local news -->
-    <v-layout row wrap v-if="newsItems">
-      <v-flex xs4 v-for="(item,i) in newsItems" :key="i">
-        <v-card>
-          <v-img :src="item.images"></v-img>
-
-          <v-card-title primary-title>
-            <div>
-              <h3 class="headline mb-0">{{item.title}}</h3>
-              <div>{{item.desc}}</div>
-            </div>
-          </v-card-title>
-
-          <v-card-actions>
-            <v-btn flat color="orange">{{item.tag}}</v-btn>
-            <v-btn flat color="orange">{{item.views}}</v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-flex>
-    </v-layout>
     <!-- placeholder pic -->
     <v-layout row wrap>
       <v-flex v-for="item in img" :key="item.id" xs4 d-flex>
@@ -96,29 +90,10 @@
     </v-layout>
   </v-container>
 </template>
+
 <script>
+import fns from "@/assets/js/common";
 export default {
-  components: {
-    SheetFooter: {
-      functional: true,
-
-      render(h, { children }) {
-        return h(
-          "v-sheet",
-          {
-            staticClass: "mt-auto align-center justify-center d-flex",
-            props: {
-              color: "rgba(0, 0, 0, .36)",
-              dark: true,
-              height: 40
-            }
-          },
-          children
-        );
-      }
-    }
-  },
-
   data: () => ({
     loaderPost: null,
     loadingPost: false,
@@ -152,6 +127,7 @@ export default {
   },
   created() {
     this.$store.commit("setactivePage", { activePage: "Components" });
+    fns.fnTwo();
   },
   computed: {
     noData() {
@@ -168,6 +144,9 @@ export default {
   methods: {
     initData() {
       Object.assign(this.$data, this.$options.data());
+    },
+    customFn(){
+      fns.fnOne();
     },
     async getMsg() {
       this.loaderPost = "loading";
@@ -214,6 +193,7 @@ export default {
       let res;
       res = await this.$api.local.getNews();
       this.newsItems = res.data;
+
     }
   }
 };
