@@ -14,10 +14,13 @@
         </v-img>
       </v-carousel-item>
     </v-carousel>
-
+<v-layout row v-if="testData">
+  {{testData}}
+</v-layout>
     <v-layout row>
       <v-flex xs12>
         <div>
+          <v-btn color="blue" @click="testFn()">test</v-btn>
           <v-btn color="error" @click="changePic()">change pic</v-btn>
           <v-btn color="info" @click="change()">change store</v-btn>
           {{count}}
@@ -38,6 +41,7 @@
 // nn=+Math.floor(Math.random()*11);
 export default {
   data: () => ({
+    testData:'',
     items: [
       {
         src: "https://picsum.photos/1280/600?image=",
@@ -79,6 +83,16 @@ export default {
         v.lazySrc = "https://picsum.photos/12/6?image=" + this.imgNum;
         this.imgNum++;
       });
+    },
+    testFn(){
+       var resOk = {
+        status: "1",
+        msg: "OK",
+        errMsg: ""
+    }
+    var news={data:[]};
+    var data = Object.assign(resOk,news);
+    this.testData=data;
     }
   }
 };

@@ -3,7 +3,7 @@
     <h1>This is an help page
       <fa-icon :icon="['fas', 'spinner']" spin fixed-width/>
     </h1>
-    
+
     <h3>store count:{{count}}</h3>
     <h2 v-if="noData" class="test-color-1">no data</h2>
     <h2 v-else>{{msg}}</h2>
@@ -14,11 +14,18 @@
       color="primary"
       @click="getMsg()"
     >get post</v-btn>
-    <v-btn :loading="loadingPhoto" :disabled="loadingPhoto" round dark color="green" @click="getImg()">get photo placeholder</v-btn>
+    <v-btn
+      :loading="loadingPhoto"
+      :disabled="loadingPhoto"
+      round
+      dark
+      color="green"
+      @click="getImg()"
+    >get photo placeholder</v-btn>
     <v-btn round dark color="purple" @click="getPicsum()">get picsum</v-btn>
-    <v-btn round dark color="blue" @click="getlocalTest()">get local</v-btn>
+    <v-btn round dark color="blue" @click="getlocalTest()">get local news</v-btn>
     <v-btn round dark color="dark" @click="initData()">init data</v-btn>
-
+    <!-- picsum pic -->
     <v-layout row wrap v-if="picN">
       <v-flex v-for="n in picN" :key="n" xs4 d-flex>
         <v-card flat tile class="d-flex">
@@ -35,9 +42,42 @@
         </v-card>
       </v-flex>
     </v-layout>
-    <v-layout row v-if="items">
-      <code xs12>{{items}}</code>
+    <!-- sheet -->
+    <v-container grid-list-xl>
+      <v-layout row wrap>
+        <v-flex xs12 d-flex>
+          <v-layout wrap v-if="newsItems" >
+            <v-flex xs3 v-for="(item,i) in newsItems" :key="i">
+              <v-img :src="item.images"></v-img>
+              <v-sheet class="d-flex" elevation="3" color="blue lighten-3">
+                <sheet-footer>{{item.title}}</sheet-footer>
+              </v-sheet>
+            </v-flex>
+          </v-layout>
+        </v-flex>
+      </v-layout>
+    </v-container>
+    <!-- local news -->
+    <v-layout row wrap v-if="newsItems">
+      <v-flex xs4 v-for="(item,i) in newsItems" :key="i">
+        <v-card>
+          <v-img :src="item.images"></v-img>
+
+          <v-card-title primary-title>
+            <div>
+              <h3 class="headline mb-0">{{item.title}}</h3>
+              <div>{{item.desc}}</div>
+            </div>
+          </v-card-title>
+
+          <v-card-actions>
+            <v-btn flat color="orange">{{item.tag}}</v-btn>
+            <v-btn flat color="orange">{{item.views}}</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-flex>
     </v-layout>
+    <!-- placeholder pic -->
     <v-layout row wrap>
       <v-flex v-for="item in img" :key="item.id" xs4 d-flex>
         <v-card flat tile class="d-flex">
@@ -58,16 +98,37 @@
 </template>
 <script>
 export default {
-  data:()=> ({
-      loaderPost: null,
-      loadingPost: false,
-      loaderPhoto: null,
-      loadingPhoto: false,
-      items: "",
-      msg: "",
-      img: "",
-      imgNum: "",
-      picN: ""
+  components: {
+    SheetFooter: {
+      functional: true,
+
+      render(h, { children }) {
+        return h(
+          "v-sheet",
+          {
+            staticClass: "mt-auto align-center justify-center d-flex",
+            props: {
+              color: "rgba(0, 0, 0, .36)",
+              dark: true,
+              height: 40
+            }
+          },
+          children
+        );
+      }
+    }
+  },
+
+  data: () => ({
+    loaderPost: null,
+    loadingPost: false,
+    loaderPhoto: null,
+    loadingPhoto: false,
+    newsItems: "",
+    msg: "",
+    img: "",
+    imgNum: "",
+    picN: ""
   }),
   created() {
     this.getMsg();
@@ -149,14 +210,10 @@ export default {
       this.loaderPhoto = null;
     },
     async getlocalTest() {
-      this.items = "";
+      this.newsItems = "";
       let res;
-      try {
-        res = await this.$api.local.getData("getJson");
-      } catch (e) {
-        console.log(e);
-      }
-      this.items = res;
+      res = await this.$api.local.getNews();
+      this.newsItems = res.data;
     }
   }
 };
