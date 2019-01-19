@@ -1,8 +1,7 @@
-var b = "b text"
 
 function fns() {
-    this.fnOne = function () {
-            console.log("this is the test function 'fnOne'." + b)
+    this.fnOne = function (b) {
+            console.log("this is the test function 'fnOne'. - param: " + b)
         },
         this.fnTwo = function () {
             console.log("this is the test function 'fnTwo'.")
@@ -10,8 +9,8 @@ function fns() {
 }
 class fn {
     constructor() {
-        this.fnOne = function () {
-                console.log("this is the test function 'fnOne'." + b)
+        this.fnOne = function (param) {
+                 console.log("this is the test function 'fnOne'. - param: " + param)
             },
             this.fnTwo = function () {
                 console.log("this is the test function 'fnTwo'.")

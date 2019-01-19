@@ -2,21 +2,14 @@
   <v-container>
     <v-carousel interval="10000" class="round-deli">
       <v-carousel-item v-for="(item,i) in items" :key="i">
-        <v-img
-          :src="item.src"
-          :lazy-src="item.lazySrc"
-          class="grey lighten-2"
-          v-if="item.src"
-        >
+        <v-img :src="item.src" :lazy-src="item.lazySrc" class="grey lighten-2" v-if="item.src">
           <v-layout slot="placeholder" fill-height align-center justify-center ma-0>
             <v-progress-circular indeterminate color="grey  darken-3"></v-progress-circular>
           </v-layout>
         </v-img>
       </v-carousel-item>
     </v-carousel>
-<v-layout row v-if="testData">
-  {{testData}}
-</v-layout>
+    <v-layout row v-if="testData">{{testData}}</v-layout>
     <v-layout row>
       <v-flex xs12>
         <div class="testContent">
@@ -40,23 +33,23 @@
 import "@/assets/css/base.css";
 export default {
   data: () => ({
-    testData:'',
+    testData: "",
     items: [
       {
-        src: "https://picsum.photos/1280/600?image=",
-        lazySrc: "https://picsum.photos/12/6?image="
+        src: "",
+        lazySrc: ""
       },
       {
-        src: "https://picsum.photos/1280/600?image=",
-        lazySrc: "https://picsum.photos/12/6?image="
+        src: "",
+        lazySrc: ""
       },
       {
-        src: "https://picsum.photos/1280/600?image=",
-        lazySrc: "https://picsum.photos/12/6?image="
+        src: "",
+        lazySrc: ""
       },
       {
-        src: "https://picsum.photos/1280/600?image=",
-        lazySrc: "https://picsum.photos/12/6?image="
+        src: "",
+        lazySrc: ""
       }
     ],
     imgNum: ""
@@ -83,15 +76,15 @@ export default {
         this.imgNum++;
       });
     },
-    testFn(){
-       var resOk = {
+    testFn() {
+      var resOk = {
         status: "1",
         msg: "OK",
         errMsg: ""
-    }
-    var news={data:[]};
-    var data = Object.assign(resOk,news);
-    this.testData=data;
+      };
+      var news = { data: [] };
+      var data = Object.assign(resOk, news);
+      this.testData = data;
     }
   }
 };

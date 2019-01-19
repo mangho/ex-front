@@ -26,6 +26,7 @@
     <v-btn round dark color="blue" @click="getlocalTest()">get local news</v-btn>
     <v-btn round dark color="dark" @click="initData()">init data</v-btn>
     <v-btn round dark color="red" @click="customFn()">custom function</v-btn>
+    <v-btn round dark color="pink" @click="axGet()">axios get</v-btn>
     <!-- picsum pic -->
     <v-layout row wrap v-if="picN">
       <v-flex v-for="n in picN" :key="n" xs4 d-flex>
@@ -92,7 +93,8 @@
 </template>
 
 <script>
-import fns from "@/assets/js/common";
+import fns from "@/assets/js/common"
+import axios from 'axios'
 export default {
   data: () => ({
     loaderPost: null,
@@ -146,7 +148,12 @@ export default {
       Object.assign(this.$data, this.$options.data());
     },
     customFn(){
-      fns.fnOne();
+      var para=Math.floor(Math.random() * 11);
+      fns.fnOne(para);
+    },
+    async axGet(param){
+      let res=await axios.get("http://localhost:8091/api/news");
+      console.log(res);
     },
     async getMsg() {
       this.loaderPost = "loading";
@@ -191,7 +198,7 @@ export default {
     async getlocalTest() {
       this.newsItems = "";
       let res;
-      res = await this.$api.local.getNews();
+      res = await this.$api.local.getNews("id=1")
       this.newsItems = res.data;
 
     }
