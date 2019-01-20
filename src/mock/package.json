@@ -1,6 +1,7 @@
 {
   "scripts": {
     "devjs": "json-server db.js",
+    "nm": "nodemon server.js",
     "devjson": "json-server db.json"
   },
   "dependencies": {

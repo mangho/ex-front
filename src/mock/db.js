@@ -7,11 +7,11 @@ module.exports = function () {
         msg: "OK",
         errMsg: ""
     }
-    let news={data:[]};
+    let data={news:[]};
     let images = [1, 2, 3].map(x => Random.image('200x100', Random.color(), Random.word(2, 6)));
     for (let i = 0; i < 12; i++) {
         let content = Random.cparagraph(0, 10);
-        news.data.push({
+        data.news.push({
             id: i,
             title: Random.cword(8, 20),
             desc: content.substr(0, 40),
@@ -21,6 +21,7 @@ module.exports = function () {
             // images: images.slice(0, Random.integer(1, 3))
         })
     }
-    let data={news:Object.assign(resContent,news)}
+    // let data={news:Object.assign(resContent,news)}
+
     return data
 }
