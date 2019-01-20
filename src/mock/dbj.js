@@ -1,7 +1,7 @@
 let Mock = require('mockjs');
 let Random = Mock.Random;
 
-var dbf = function () {
+var newsFn = function () {
     let news = [];
     let images = [1, 2, 3].map(x => Random.image('200x100', Random.color(), Random.word(2, 6)));
     for (let i = 0; i < 12; i++) {
@@ -9,7 +9,8 @@ var dbf = function () {
         news.push({
             id: i,
             title: Random.cword(8, 20),
-            desc: content.substr(0, 40),
+            abstract: content.length>29?content.substr(0, 30)+'...':content,
+            desc: content,
             tag: Random.cword(2, 6),
             views: Random.integer(100, 5000),
             images: Random.image('200x' + Random.integer(100, 500), Random.color(), Random.word(2, 6))
@@ -19,7 +20,25 @@ var dbf = function () {
     
     return news
 }
-var news = dbf();
+var usersFn = function () {
+    let users = [];
+    for (let i = 0; i < 24; i++) {
+        users.push({
+            id: i,
+            userId:Random.increment(2000),
+            name: Random.cname(),
+            province:Random.province(),
+            city: Random.city(),
+            followers: Random.integer(10, 5000),
+            zip: Random.zip(),
+            avator: Random.image('160x160', Random.color(), Random.word(2, 6))
+        })
+    }
+    
+    return users
+}
+var news = newsFn();
+var users = usersFn();
 module.exports = {
-    news
+    news,users
 }
