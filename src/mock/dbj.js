@@ -38,7 +38,7 @@ var usersFn = function () {
     return users
 }
 var news = newsFn();
-var users = usersFn();
+var userinfo = usersFn();
 module.exports = {
-    news,users
+    news,userinfo
 }

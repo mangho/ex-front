@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+import Home from './views/home.vue'
 const hostName = "Vuetify test"
 Vue.use(Router)
 
@@ -20,7 +20,7 @@ export default new Router({
       meta: {
         title: 'about - ' + hostName
       },
-      component: () => import('./views/About.vue')
+      component: () => import('./views/about.vue')
     },
     {
       path: '/help',
