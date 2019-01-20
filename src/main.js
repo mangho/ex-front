@@ -10,7 +10,7 @@ import {fas} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import './plugins/vuetify.js'
 import "@/assets/style.css"
-import "@/api/index"
+import "@/api/api"
 library.add(faWeixin,faFacebookF,faGooglePlusG,faWeibo,fas)
 
 Vue.component('fa-icon', FontAwesomeIcon)

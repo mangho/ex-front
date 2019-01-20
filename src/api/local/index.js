@@ -1,22 +1,28 @@
-import api from '../index'
-const baseUrl = 'http://localhost:8091'
+import api from '../api'
+const baseUrl = 'http://localhost:8091';
+
 export default {
-    getUserCartData(params) {
-        return api.get(baseUrl + "/api/cart", params)
+    getNews:params=> {
+        let ins = params ? '?'+params : '';
+        return api.get(baseUrl + "/v1/news" + ins)
     },
-    getNews(params) {
-        return api.get(baseUrl + "/api/news", params)
+    createNews:params=> {
+        return api.post(baseUrl + "/v1/news" ,params)
     },
-    getUserFinance(params) {
-        return api.get(baseUrl + "/api/finance", params)
+    updateNews:params=>{
+        return api.put(baseUrl + "/v1/news/"+params.id, params)
     },
-    /**
-     * @param {string} id - user id.
-     */
-    getUserInfo(params) {
-        return api.get(baseUrl + "/api/userinfo", params)
+    deleteNews:params=>{
+        return api.delete(baseUrl + "/v1/news/"+params.id)
     },
-    postUserInfo(params) {
-        return api.post(baseUrl + "/api/userinfo", params)
+    getUsers:params=> {
+        let ins = params ? '?'+params : '';
+        return api.get(baseUrl + "/v1/users" + ins)
     },
+    createUsers:params=>{
+        return api.post(baseUrl + "/v1/userinfo/"+ params.id)
+    },
+    updateUsers:params=>{
+        return api.put(baseUrl + "/v1/userinfo/"+params.id)
+    }
 }

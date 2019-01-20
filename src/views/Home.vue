@@ -30,7 +30,7 @@ export default {
     dialog: false
   }),
   created() {
-    this.$store.commit("setactivePage", { activePage: "Home" });
+    this.$store.commit("setactivePage", { activePage: "home" });
   }
 };
 </script>

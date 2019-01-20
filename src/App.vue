@@ -25,7 +25,7 @@
         <v-spacer></v-spacer>
         <v-toolbar-items class="hidden-xs-only">
           <template v-for="(item, index) in items">
-            <v-btn flat v-if="item.action" :class="{'btn-active':activePage==item.title}" :key="item.title" @click="toPage(item)">{{item.title}}</v-btn>
+            <v-btn flat v-if="item.action" :class="{'btn-active':activePage==item.title.toLowerCase()}" :key="item.title" @click="toPage(item)">{{item.title}}</v-btn>
             <v-divider v-else-if="item.divider" :key="index"></v-divider>
           </template>
         </v-toolbar-items>
@@ -46,7 +46,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import http from "@/api/index";
+import http from "@/api/api";
 import comfooter from "./components/comfooter";
 export default {
   name: "App",
@@ -71,6 +71,11 @@ export default {
           action: "mask",
           title: "Components",
           path: "/help"
+        },
+        {
+          action: "mask",
+          title: "REST",
+          path: "/rest"
         }
       ]
     }),
@@ -86,6 +91,9 @@ export default {
     },
     activePage() {
       return this.$store.state.activePage;
+    },
+    activeCLass(){
+      
     }
   },
   methods: {

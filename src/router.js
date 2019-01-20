@@ -29,7 +29,15 @@ export default new Router({
         title: '测试组件 - ' + hostName
       },
       component: () => import('./views/help.vue')
-    }
+    },
+    {
+      path: '/rest',
+      name: 'rest',
+      meta: {
+        title: 'REST Api - ' + hostName
+      },
+      component: () => import('./views/rest.vue')
+    },
   ],
   scrollBehavior (to, from, savedPosition) {
     if (savedPosition) {

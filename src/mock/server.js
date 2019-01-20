@@ -3,7 +3,7 @@ const server = jsonServer.create()
 const middlewares = jsonServer.defaults()
 const db = require('./dbj.js')
 server.use(jsonServer.rewriter({
-    '/api/*': '/$1',
+    '/v1/*': '/$1',
 }))
 server.use(middlewares)
 server.use(jsonServer.router(db))

@@ -56,7 +56,7 @@ export default {
   }),
   created() {
     this.changePic();
-    this.$store.commit("setactivePage", { activePage: "About" });
+    this.$store.commit("setactivePage", { activePage: "about" });
   },
   computed: {
     count() {

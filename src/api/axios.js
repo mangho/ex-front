@@ -4,7 +4,7 @@ import browser from '../common/browser'
 // 创建 axios 实例
 let http = axios.create({
     // headers: {'Content-Type': 'application/json'},
-    timeout: 60000
+    timeout: 6000
 })
 
 // 设置 post、put 默认 Content-Type
@@ -36,6 +36,11 @@ http.interceptors.response.use(res => {
     return data
 }, error => {
     let info = {}
+    let {
+        status,
+        statusText,
+        data
+    } = error.response
     if (!error.response) {
         info = {
             code: 5000,
@@ -44,6 +49,60 @@ http.interceptors.response.use(res => {
     } else {
         // 此处整理错误信息格式
         info = error.response
+        info = {
+            code: status,
+            data: data,
+            msg: statusText
+        }
+        if (error && error.response) {
+            switch (error.response.status) {
+                case 400:
+                    info.message = '请求错误'
+                    break
+
+                case 401:
+                    info.message = '未授权，请登录'
+                    break
+
+                case 403:
+                    info.message = '拒绝访问'
+                    break
+
+                case 404:
+                    info.message = `请求地址出错: ${error.response.config.url}`
+                    break
+
+                case 408:
+                    info.message = '请求超时'
+                    break
+
+                case 500:
+                    info.message = '服务器内部错误'
+                    break
+
+                case 501:
+                    info.message = '服务未实现'
+                    break
+
+                case 502:
+                    info.message = '网关错误'
+                    break
+
+                case 503:
+                    info.message = '服务不可用'
+                    break
+
+                case 504:
+                    info.message = '网关超时'
+                    break
+
+                case 505:
+                    info.message = 'HTTP版本不受支持'
+                    break
+
+                default:
+            }
+        }
     }
     return Promise.reject(info)
 })

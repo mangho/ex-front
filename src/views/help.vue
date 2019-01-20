@@ -27,6 +27,8 @@
     <v-btn round dark color="dark" @click="initData()">init data</v-btn>
     <v-btn round dark color="red" @click="customFn()">custom function</v-btn>
     <v-btn round dark color="pink" @click="axGet()">axios get</v-btn>
+    <v-btn round dark color="pink" @click="axPut()">axios put</v-btn>
+    <v-btn round dark color="pink" @click="axDelete()">axios delete</v-btn>
     <!-- picsum pic -->
     <v-layout row wrap v-if="picN">
       <v-flex v-for="n in picN" :key="n" xs4 d-flex>
@@ -45,8 +47,6 @@
       </v-flex>
     </v-layout>
     <!--news sheet -->
-
-
     <!-- local news -->
     <v-container grid-list-xl>
       <v-layout row wrap>
@@ -93,8 +93,8 @@
 </template>
 
 <script>
-import fns from "@/assets/js/common"
-import axios from 'axios'
+import fns from "@/assets/js/common";
+import axios from "axios";
 export default {
   data: () => ({
     loaderPost: null,
@@ -108,8 +108,8 @@ export default {
     picN: ""
   }),
   created() {
-    this.getMsg();
-    this.getPicNum;
+    this.$store.commit("setactivePage", { activePage: "components" });
+    fns.fnTwo();
   },
   watch: {
     loaderPost(v) {
@@ -127,10 +127,6 @@ export default {
       }
     }
   },
-  created() {
-    this.$store.commit("setactivePage", { activePage: "Components" });
-    fns.fnTwo();
-  },
   computed: {
     noData() {
       if (this.msg) {
@@ -147,14 +143,33 @@ export default {
     initData() {
       Object.assign(this.$data, this.$options.data());
     },
-    customFn(){
-      var para=Math.floor(Math.random() * 11);
+    customFn() {
+      var para = Math.floor(Math.random() * 11);
       fns.fnOne(para);
     },
-    async axGet(param){
-      let res=await axios.get("http://localhost:8091/api/news");
+    async axGet() {
+      let res = await axios.get("http://localhost:8091/v1/news");
       console.log(res);
     },
+    async axDelete() {
+      let res = await axios.delete("http://localhost:8091/v1/news/0");
+      console.log(res);
+    },
+    async axPut(param) {
+       let data = {
+        title: "更新示例标题",
+        abstract:
+          "更新示例摘要",
+        desc:
+          "更新示例正文示例正文示例正文示例正文，更新示例正文示例正文示例正文示例正文示例正文示例正文。更新示例正文示例正文示例正文示例正文示例正文。",
+        tag: "更新",
+        views: 9554,
+        images: "http://dummyimage.com/200x388/e979f2&text=sl"
+      };
+      let res = await axios.put("http://localhost:8091/v1/news?id=1",data);
+      console.log(res);
+    },
+
     async getMsg() {
       this.loaderPost = "loading";
       this.msg = "";
@@ -197,10 +212,9 @@ export default {
     },
     async getlocalTest() {
       this.newsItems = "";
-      let res;
-      res = await this.$api.local.getNews("id=1")
-      this.newsItems = res.data;
-
+      let sd = "id=1";
+      let res = await this.$api.local.getNews();
+      this.newsItems = res;
     }
   }
 };
