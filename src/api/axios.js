@@ -36,19 +36,19 @@ http.interceptors.response.use(res => {
     return data
 }, error => {
     let info = {}
-    let {
-        status,
-        statusText,
-        data
-    } = error.response
+
     if (!error.response) {
         info = {
             code: 5000,
-            msg: 'Network Error'
+            message: 'Network Error'
         }
     } else {
         // 此处整理错误信息格式
-        info = error.response
+        let {
+            status,
+            statusText,
+            data
+        } = error.response
         info = {
             code: status,
             data: data,
@@ -104,6 +104,7 @@ http.interceptors.response.use(res => {
             }
         }
     }
+    console.log(`${info.message} , code: ${info.code}`);
     return Promise.reject(info)
 })
 

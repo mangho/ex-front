@@ -102,12 +102,12 @@ export default {
           "创建示例正文示例正文示例正文示例正文，创建示例正文示例正文示例正文示例正文示例正文示例正文。",
         tag: "创建",
         views: 9554,
-        images: "http://dummyimage.com/200x388/e979f2&text=sl"
+        images: "http://dummyimage.com/200x100/e979f2&text=sl"
       };
       let res = await this.$api.local.createNews(data);
       this.getLocalNews();
     },
-    async updateLocalNews() {
+    updateLocalNews() {
       let data = {
         id: this.selectValue,
         title: "更新示例标题",
@@ -116,15 +116,9 @@ export default {
           "更新示例正文示例正文示例正文示例正文，更新示例正文示例正文示例正文示例正文示例正文示例正文。",
         tag: "更新",
         views: 9554,
-        images: "http://dummyimage.com/200x388/e979f2&text=sl"
+        images: "http://dummyimage.com/200x100/e979f2&text=sl"
       };
-      let res;
-      try {
-        res = await this.$api.local.updateNews(data);
-        this.newsItems = res;
-      } catch (e) {
-        console.log(e)
-      }
+      this.$api.local.updateNews(data).then(() => this.getLocalNews())
     },
     async deleteLocalNews(id) {
       let data = {
