@@ -18,7 +18,7 @@
     </v-navigation-drawer>
 
     <div class="hide-overflow" style="position: relative;">
-      <v-toolbar color="indigo" fixed dark>
+      <v-toolbar color="deep-purple" fixed dark>
         <v-toolbar-side-icon @click.stop="drawer = !drawer" class="hidden-sm-and-up"></v-toolbar-side-icon>
         <router-link to="/"><v-img :src="require('@/assets/logo.svg')" class="my-1" contain height="40" width="40"></v-img></router-link>
         <v-toolbar-title>Title</v-toolbar-title>
