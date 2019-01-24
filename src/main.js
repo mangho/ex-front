@@ -1,7 +1,7 @@
 import 'babel-polyfill'
 import Vue from 'vue'
 import api from './api/install'
-import App from './App.vue'
+import App from './app.vue'
 import router from './router'
 import store from './store'
 import { library } from '@fortawesome/fontawesome-svg-core'
