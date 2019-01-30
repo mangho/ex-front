@@ -1,5 +1,5 @@
 # vuetify-test
-
+### v0.2.1
 ## Project setup
 ```
 npm install
