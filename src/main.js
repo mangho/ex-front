@@ -1,28 +1,19 @@
-import 'babel-polyfill'
 import Vue from 'vue'
-import api from './api/install'
-import App from './app.vue'
+import App from './App.vue'
 import router from './router'
 import store from './store'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import {faWeixin,faFacebookF,faGooglePlusG,faWeibo} from '@fortawesome/free-brands-svg-icons'
-import {fas} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import './plugins/vuetify.js'
-import "@/assets/style.css"
-import "@/api/api"
-library.add(faWeixin,faFacebookF,faGooglePlusG,faWeibo,fas)
-
-Vue.component('fa-icon', FontAwesomeIcon)
+import vuetify from './plugins/vuetify';
 
 Vue.config.productionTip = false
 router.beforeEach((to, from, next) => {
-  window.document.title = to.meta.title;
-  next()
-})
-Vue.use(api)
+    if (to.matched.some(record => record.meta.title)) {
+        window.document.title = to.meta.title;
+    }
+    next()
+  })
 new Vue({
   router,
   store,
+  vuetify,
   render: h => h(App)
 }).$mount('#app')
