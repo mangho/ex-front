@@ -1,7 +1,8 @@
 <template>
     <v-app>
-       <main-index/>
-        <v-main>
+       <main-layout/>
+        <home-banner></home-banner>
+        <v-main class="pb-16 mb-16">
         <v-container>
           <v-layout row>
             <v-flex xs12>
@@ -14,14 +15,21 @@
 </template>
 
 <script>
-import mainIndex from '@/components/main-index.vue'
+import mainLayout from '@/components/main-layout.vue'
+import homeBanner from "@/components/home-banner.vue";
+
 export default {
     name: "App",
     components:{
-        mainIndex
+        mainLayout,
+        homeBanner
+
     },
     data: () => ({
        
     }),
 };
 </script>
+<style>
+@impoort url(//at.alicdn.com/t/font_1965943_yj4uqgnfhh.css)
+</style>
