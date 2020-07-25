@@ -10,25 +10,32 @@ export default new Router({
         path: '/',
         name: 'home',
         meta: {
-          title: hostName
+            title: hostName
         },
         component: Home,
-
-      },
-      {
+    },
+    {
+        path: '*',
+        name: '404',
+        meta: {
+            title: '404 - ' + hostName
+        },
+        component: () => import('@/views/404.vue')
+    },
+    {
         path: '/about',
         name: 'about',
         meta: {
-          title: 'about - ' + hostName
+            title: 'about - ' + hostName
         },
-        component: () => import('./views/about.vue')
-      },
+        component: () => import('@/views/about.vue')
+    },
     ],
-    scrollBehavior (to, from, savedPosition) {
-      if (savedPosition) {
-        return savedPosition
-      } else {
-        return { x: 0, y: 0 }
-      }
+    scrollBehavior(to, from, savedPosition) {
+        if (savedPosition) {
+            return savedPosition
+        } else {
+            return { x: 0, y: 0 }
+        }
     }
-  })
+})

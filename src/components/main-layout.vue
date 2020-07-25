@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-app-bar app color="cyan" dark elevate-on-scroll>
+        <v-app-bar app elevate-on-scroll dark color="primary">
             <div class="d-flex align-center">
                 <v-img
                     alt="兴之所至"
@@ -14,15 +14,29 @@
             </div>
             <v-spacer></v-spacer>
             <div v-for="(item, index) in topMenus" :key="index">
-                <v-btn text class="mr-2" v-if="item.action">
+                <v-btn text class="mr-2" rounded v-if="item.action"  @click="toPage(item)">
                     <span>{{item.title}}</span>
                 </v-btn>
             </div>
+            <v-btn icon class="mr-2" @click="switchTheme()">
+              <v-icon>mdi-invert-colors</v-icon>
+            </v-btn>
         </v-app-bar>
-        <v-footer dark app padless absolute>
+
+        <v-footer app padless absolute>
             <v-card class="flex" flat tile>
-                <v-card-title class="py-2 d-flex justify-center" style="border-bottom:1px solid #666">
-                    <v-btn v-for="icon in bottomMenu" :key="icon.icon" class="mx-3" dark icon outlined>
+                <v-card-title
+                    class="py-2 d-flex justify-center"
+                    style="border-bottom:1px solid #666"
+                >
+                    <v-btn
+                        v-for="icon in bottomMenu"
+                        :key="icon.icon"
+                        class="mx-3"
+                        
+                        icon
+                        outlined
+                    >
                         <v-icon size="18px" :title="icon.title">{{ icon.icon }}</v-icon>
                     </v-btn>
                 </v-card-title>
@@ -71,10 +85,23 @@ export default {
             },
         ],
         bottomMenu: [
-            {title:'微信',color:"#66BC54",icon:"mdi-wechat"},
-            {title:'QQ',color:"#4FA5DB",icon:"mdi-qqchat"},
+            { title: "微信", color: "#66BC54", icon: "mdi-wechat" },
+            { title: "QQ", color: "#4FA5DB", icon: "mdi-qqchat" },
         ],
     }),
+    methods: {
+        toPage(item) {
+            if (item.path) {
+                if(this.$route.path===item.path) return;
+                this.$router.push(item.path).catch(e=>{console.log(e);})
+            }
+        },
+        switchTheme(){
+            this.$store.commit('setTheme');
+            this.$vuetify.theme.dark=this.$store.state.dark
+            console.log(this.$store.state.dark);
+        }
+    },
 };
 </script>
 
