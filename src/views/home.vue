@@ -1,5 +1,6 @@
 <template>
     <div>
+        <div>home</div> 
         <pro-list />
     </div>
 </template>
