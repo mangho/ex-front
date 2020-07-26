@@ -1,5 +1,15 @@
 import localData from "@/data/local_data.js";
-import webData from "@/data/web_data.js";
+function transhomepro(data) {
+    // data.homePro[0].src='http://cdn.evaci.top/wp/wp-content/uploads/2017/09/20170919_59c07559e70df.jpg'
+    data.homePro.forEach(item => {
+        item.src='http://cdn.evaci.top/wp/wp-content/uploads/2017/09/20170919_59c07559e70df.jpg';
+    })
+    data.blogList.forEach(item => {
+        item.image='http://cdn.evaci.top/wp/wp-content/uploads/2017/09/20170919_59c07559e70df.jpg';
+    })
+}
 let local = false;
-const data = local ? localData : webData
-export default data
+if (!local) {
+    transhomepro(localData)
+}
+export default localData
