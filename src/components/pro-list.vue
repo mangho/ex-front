@@ -7,6 +7,7 @@
                     :class="{ 'on-hover': hover }"
                     :color="item.color"
                     dark
+                    v-ripple
                     tile
                 >
                     <div class="d-flex flex-no-wrap justify-space-between">
@@ -19,10 +20,9 @@
                                     color="white"
                                     outlined
                                     x-small
-                                    v-for="(teck, index) in item.teck" :key="index"
-                                >
-                                    {{teck}}
-                                </v-chip>
+                                    v-for="(teck, index) in item.tag"
+                                    :key="index"
+                                >{{teck}}</v-chip>
                             </v-card-subtitle>
                         </div>
 
@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import { homePro } from "@/data/data";
+import { homePro } from "@/data/local_data.js";
 export default {
     name: "proList",
     data: () => ({

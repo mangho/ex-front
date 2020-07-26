@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import mainLayout from '@/components/main-layout.vue'
+import mainLayout from '@/layouts/main-layout.vue'
 
 
 export default {
@@ -26,10 +26,10 @@ export default {
        
     }),
     mounted(){
-       this.$vuetify.theme.dark=this.$store.state.dark
+        this.$vuetify.theme.dark=this.$store.state.dark===true
     }
 };
 </script>
-<style>
-
+<style lang="scss">
+@import "@/styles/main.scss";
 </style>

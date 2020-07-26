@@ -6,7 +6,7 @@
                     alt="兴之所至"
                     class="shrink mr-2"
                     contain
-                    src="@/static/img/logo.png"
+                    src="@/static/img/logo/logo.png"
                     transition="scale-transition"
                     width="40"
                 />
@@ -14,12 +14,12 @@
             </div>
             <v-spacer></v-spacer>
             <div v-for="(item, index) in topMenus" :key="index">
-                <v-btn text class="mr-2" rounded v-if="item.action"  @click="toPage(item)">
+                <v-btn text class="mr-2" rounded v-if="item.action" @click="toPage(item)">
                     <span>{{item.title}}</span>
                 </v-btn>
             </div>
             <v-btn icon class="mr-2" @click="switchTheme()">
-              <v-icon>mdi-invert-colors</v-icon>
+                <v-icon>mdi-invert-colors</v-icon>
             </v-btn>
         </v-app-bar>
 
@@ -29,14 +29,7 @@
                     class="py-2 d-flex justify-center"
                     style="border-bottom:1px solid #666"
                 >
-                    <v-btn
-                        v-for="icon in bottomMenu"
-                        :key="icon.icon"
-                        class="mx-3"
-                        
-                        icon
-                        outlined
-                    >
+                    <v-btn v-for="icon in bottomMenu" :key="icon.icon" class="mx-3" icon outlined>
                         <v-icon size="18px" :title="icon.title">{{ icon.icon }}</v-icon>
                     </v-btn>
                 </v-card-title>
@@ -92,15 +85,16 @@ export default {
     methods: {
         toPage(item) {
             if (item.path) {
-                if(this.$route.path===item.path) return;
-                this.$router.push(item.path).catch(e=>{console.log(e);})
+                if (this.$route.path === item.path) return;
+                this.$router.push(item.path).catch((e) => {
+                    console.log(e);
+                });
             }
         },
-        switchTheme(){
-            this.$store.commit('setTheme');
-            this.$vuetify.theme.dark=this.$store.state.dark
-            console.log(this.$store.state.dark);
-        }
+        switchTheme() {
+            this.$store.commit("setTheme");
+            this.$vuetify.theme.dark = this.$store.state.dark === true;
+        },
     },
 };
 </script>

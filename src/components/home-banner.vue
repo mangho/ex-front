@@ -1,6 +1,6 @@
 <template>
   <v-parallax
-    src="@/static/img/index-bg.jpg"
+    src="@/static/img/profolio/MG_8878.jpg"
   >
     <v-row
       align="center"

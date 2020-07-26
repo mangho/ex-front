@@ -5,7 +5,7 @@ Vue.use(Vuex)
 let isDark=localStorage.getItem('dark')
 export default new Vuex.Store({
   state: {
-    dark:isDark||false
+    dark:JSON.parse(isDark)||false
   },
   mutations: {
     setTheme(state){
