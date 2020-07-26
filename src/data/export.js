@@ -1,5 +1,5 @@
-import {blogList1 } from "@/data/local_data.js";
-import { blogList2 } from "@/data/web_data.js";
+import localData from "@/data/local_data.js";
+import webData from "@/data/web_data.js";
 let local = false;
-const blogList = local ? blogList1 :blogList2
-export { blogList }
+const data = local ? localData : webData
+export default data

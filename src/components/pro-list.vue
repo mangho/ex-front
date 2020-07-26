@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import { homePro } from "@/data/local_data.js";
+import data from "@/data/export.js";
 export default {
     name: "proList",
     data: () => ({
@@ -45,7 +45,7 @@ export default {
         items: [],
     }),
     mounted() {
-        this.items = homePro;
+        this.items = data.homePro;
     },
 };
 </script>

@@ -1,4 +1,4 @@
-export const homePro2 = [
+const homePro = [
     {
         color: "#3cbb55",
         src: 'http://cdn.evaci.top/wp/wp-content/uploads/2017/09/20170919_59c07559e70df.jpg',
@@ -60,7 +60,7 @@ export const homePro2 = [
         tag: ["html"],
     },
 ]
-export const blogList2 = [
+const blogList = [
     {
         id:'1',
         color: "#3cbb55",
@@ -434,3 +434,4 @@ export const blogList2 = [
         格局见结局。`
     },
 ]
+export  default {homePro,blogList};

@@ -1,4 +1,4 @@
-export const homePro1 = [
+const homePro = [
     {
         color: "#3cbb55",
         src: require("@/static/img/profolio/webdp.jpg"),
@@ -60,7 +60,7 @@ export const homePro1 = [
         tag: ["html"],
     },
 ]
-export const blogList1 = [
+const blogList = [
     {
         id:'1',
         color: "#3cbb55",
@@ -434,3 +434,4 @@ export const blogList1 = [
         格局见结局。`
     },
 ]
+export  default {homePro,blogList};

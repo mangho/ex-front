@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { blogList } from "@/data/export.js";
+import data from "@/data/export.js";
 export default {
     name: "proList",
     data: () => ({
@@ -51,7 +51,8 @@ export default {
         items: [],
     }),
     mounted() {
-        this.items = blogList;
+        this.items = data.blogList;
+
     },
     methods: {
         toDetail(item) {
