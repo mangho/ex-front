@@ -10,7 +10,7 @@
                     v-ripple
                     tile
                 >
-                    <div class="d-flex flex-no-wrap justify-space-between">
+                    <div class="d-flex flex-no-wrap justify-space-between" @click="toDetail(item)">
                         <div>
                             <v-card-title class="headline" v-text="item.title"></v-card-title>
 
@@ -47,6 +47,11 @@ export default {
     mounted() {
         this.items = data.homePro;
     },
+    methods:{
+        toDetail(item){
+            this.$router.push(`/profolio-detail?${this.$fnc.transJsonToUrl({id:item.src,title:item.title,image:item.src})}`)
+        }
+    }
 };
 </script>
 <style scoped>

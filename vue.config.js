@@ -6,7 +6,7 @@ module.exports = {
             new VuetifyLoaderPlugin()
         ],
     },
-    "publicPath": "/",
+    "publicPath": process.env.NODE_ENV === 'production' ? '/dev/' : '/',
     "devServer": {
         "port": 8090,
         "open": true
