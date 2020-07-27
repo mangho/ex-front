@@ -9,8 +9,9 @@
                     dark
                     v-ripple
                     tile
+                     @click="toDetail(item)"
                 >
-                    <div class="d-flex flex-no-wrap justify-space-between" @click="toDetail(item)">
+                    <div class="d-flex flex-no-wrap justify-space-between">
                         <div>
                             <v-card-title class="headline" v-text="item.title"></v-card-title>
 
@@ -49,7 +50,7 @@ export default {
     },
     methods:{
         toDetail(item){
-            this.$router.push(`/profolio-detail?${this.$fnc.transJsonToUrl({id:item.src,title:item.title,image:item.src})}`)
+            this.$router.push({path:`/profolio-detail/${item.id}`,query:{title:item.title,image:item.src}})
         }
     }
 };

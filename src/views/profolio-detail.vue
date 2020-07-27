@@ -1,6 +1,6 @@
 <template>
 <div>
- <page-title title="作品集" coverColor="secondary" />
+ <page-title :title="this.$route.query.title" coverColor="secondary" :src="this.$route.query.image" />
   <v-container>
           <div>blog detail</div>
       </v-container>
@@ -13,6 +13,8 @@ export default {
  components: {
         pageTitle,
     },
+   mounted(){
+   }
 }
 </script>
 

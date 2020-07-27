@@ -23,6 +23,14 @@ export default [{
     component:  () => import('@/views/profolio.vue')
 },
 {
+    path: '/profolio-detail/:id',
+    name: 'profolio-detail',
+    meta: {
+        title: ''
+    },
+    component:  () => import('@/views/profolio-detail.vue')
+},
+{
     path: '/blog',
     name: 'blog',
     meta: {
