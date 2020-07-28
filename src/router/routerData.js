@@ -40,7 +40,7 @@ export default [{
 },
 {
     path: '/blog-detail',
-    name: 'blog',
+    name: 'blog-detail',
     meta: {
         title: `文章`
     },

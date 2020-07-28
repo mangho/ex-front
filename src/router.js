@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import routerData from '@/router/routerData'
 import Router from 'vue-router'
-
 const siteTitle = "兴之所至"
 Vue.use(Router)
 
@@ -11,17 +10,8 @@ export default new Router({
         return {
             path: item.path,
             name: item.name,
-            meta: {
-                title: `${item.meta.title} - ${siteTitle}`
-            },
+            meta: {...item.meta,...{title: `${item.meta.title} - ${siteTitle}`}},
             component: item.component,
         }
     }),
-    scrollBehavior(to, from, savedPosition) {
-        if (savedPosition) {
-            return savedPosition
-        } else {
-            return { x: 0, y: 0 }
-        }
-    }
 })
