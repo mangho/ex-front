@@ -1,16 +1,17 @@
 <template>
     <div>
-        <v-app-bar app elevate-on-scroll dark color="primary">
+        <v-app-bar app elevate-on-scroll color="tabbar">
             <div class="d-flex align-center">
+                <router-link to="/">
                 <v-img
                     alt="兴之所至"
                     class="shrink mr-2"
                     contain
-                    src="@/static/img/logo/logo.png"
+                    src="//www.evaci.top/source/static/images/common/logo-newt.png"
                     transition="scale-transition"
-                    width="40"
+                    width="130"
                 />
-                <div>兴之所至</div>
+                </router-link>
             </div>
             <v-spacer></v-spacer>
             <div v-for="(item, index) in topMenus" :key="index">

@@ -1,8 +1,8 @@
 <template>
   <div>
-       <page-title title="作品集" coverColor="secondary" />
+       <page-title title="作品集" height="300"  coverColor="secondary" src="//www.evaci.top/source/static/images/bg/codbg1s-1.jpg"/>
       <v-container>
-           <pro-list />
+           <pro-list showAll="true" />
       </v-container>
   </div>
 </template>

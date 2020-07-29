@@ -8,6 +8,7 @@
                     v-ripple
                     tile
                     outlined
+                    @click="toDetail(item)"
                 >
                     <div class="d-flex flex-no-wrap">
                         <v-avatar
@@ -15,7 +16,7 @@
                             size="100"
                             tile
                             :class="{ 'title-hover': hover }"
-                            @click="toDetail(item)"
+                            
                         >
                             <v-img :src="item.image"></v-img>
                         </v-avatar>
@@ -24,7 +25,6 @@
                                 class="headline"
                                 :class="{ 'title-hover secondary--text': hover }"
                                 color="primary"
-                                @click="toDetail(item)"
                             >{{item.title}}</v-card-title>
                             <v-card-subtitle>{{item.time}}</v-card-subtitle>
                             <v-card-text class="d-flex">
@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import data from "@/data/export.js";
+import data from "@/data/";
 export default {
     name: "proList",
     data: () => ({
@@ -56,7 +56,7 @@ export default {
     },
     methods: {
         toDetail(item) {
-            this.$router.push(`/blog-detail?id=${item.id}`).catch((e) => {
+            this.$router.push({path:`/blog-detail?id=${item.id}`, query: { title: item.title, image: item.image },}).catch((e) => {
                 console.log(e);
             });
         },

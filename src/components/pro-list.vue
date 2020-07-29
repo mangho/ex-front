@@ -1,6 +1,6 @@
 <template>
     <v-row>
-        <v-col v-for="(item, i) in items" :key="i" cols="12" sm="6">
+        <v-col v-for="(item, i) in lists" :key="i" cols="12" sm="6">
             <v-hover v-slot:default="{ hover }">
                 <v-card
                     :elevation="hover ? 6 : 0"
@@ -9,12 +9,11 @@
                     dark
                     v-ripple
                     tile
-                     @click="toDetail(item)"
+                    @click="toDetail(item)"
                 >
                     <div class="d-flex flex-no-wrap justify-space-between">
                         <div>
                             <v-card-title class="headline" v-text="item.title"></v-card-title>
-
                             <v-card-subtitle>
                                 <v-chip
                                     class="my-1 mr-1"
@@ -38,9 +37,12 @@
 </template>
 
 <script>
-import data from "@/data/export.js";
+import data from "@/data/";
 export default {
     name: "proList",
+    props:{
+        showAll:false,
+    },
     data: () => ({
         icons: ["mdi-rewind", "mdi-play", "mdi-fast-forward"],
         items: [],
@@ -48,11 +50,21 @@ export default {
     mounted() {
         this.items = data.homePro;
     },
-    methods:{
-        toDetail(item){
-            this.$router.push({path:`/profolio-detail/${item.id}`,query:{title:item.title,image:item.src}})
+    computed:{
+        lists:function(){
+            return this.showAll?this.items:this.items.filter(i=>i.id>2)
         }
-    }
+    },
+    methods: {
+        toDetail(item) {
+            this.$router.push({
+                path: `/profolio-detail/${item.id}`,
+                query: { title: item.title, image: item.src },
+            }).catch(e=>{
+                console.log(e);
+            })
+        },
+    },
 };
 </script>
 <style scoped>

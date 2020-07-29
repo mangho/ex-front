@@ -1,6 +1,6 @@
 <template>
     <div>
-        <page-title title="文章" coverColor="secondary" />
+        <page-title title="文章" height="300" coverColor="secondary" src="//www.evaci.top/source/static/images/bg/m812.jpg"/>
         <v-container>
             <blog-list/>
         </v-container>
