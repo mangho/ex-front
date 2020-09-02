@@ -5,7 +5,7 @@
                <v-hover v-slot="{ hover }">
                 <v-row class="fill-height"  align="center" justify="center">
                     <v-overlay absolute :opacity="hover?0.1:0.4" z-index="-1" color="primary"></v-overlay>
-                    <a class="text-h3 white--text ca-title ma-3" @click="toDetail(slide)">{{ slide.title }}</a>
+                    <a  class="text-h3 white--text ca-title ma-3" @click="toDetail(slide)">{{ slide.title }}</a>
                 </v-row>
                </v-hover>
             </v-carousel-item>

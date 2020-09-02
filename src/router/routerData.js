@@ -39,7 +39,7 @@ export default [{
     component:  () => import('@/views/blog.vue')
 },
 {
-    path: '/blog-detail',
+    path: '/blog-detail/:id',
     name: 'blog-detail',
     meta: {
         title: `文章`

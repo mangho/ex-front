@@ -56,7 +56,7 @@ export default {
     },
     methods: {
         toDetail(item) {
-            this.$router.push({path:`/blog-detail?id=${item.id}`, query: { title: item.title, image: item.image },}).catch((e) => {
+            this.$router.push({path:`/blog-detail/${item.id}`, query: { title: item.title, image: item.image },}).catch((e) => {
                 console.log(e);
             });
         },

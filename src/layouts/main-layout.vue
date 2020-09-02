@@ -3,14 +3,14 @@
         <v-app-bar app elevate-on-scroll color="tabbar">
             <div class="d-flex align-center">
                 <router-link to="/">
-                <v-img
-                    alt="兴之所至"
-                    class="shrink mr-2"
-                    contain
-                    src="//www.evaci.top/source/static/images/common/logo-newt.png"
-                    transition="scale-transition"
-                    width="130"
-                />
+                    <v-img
+                        alt="兴之所至"
+                        class="shrink mr-2"
+                        contain
+                        src="//www.evaci.top/source/static/images/common/logo-newt.png"
+                        transition="scale-transition"
+                        width="130"
+                    />
                 </router-link>
             </div>
             <v-spacer></v-spacer>
@@ -19,6 +19,7 @@
                     <span>{{item.title}}</span>
                 </v-btn>
             </div>
+            <div v-if="hover">qr img</div>
             <v-btn icon class="mr-2" @click="switchTheme()">
                 <v-icon>mdi-invert-colors</v-icon>
             </v-btn>
@@ -30,7 +31,14 @@
                     class="py-2 d-flex justify-center"
                     style="border-bottom:1px solid #666"
                 >
-                    <v-btn v-for="icon in bottomMenu" :key="icon.icon" class="mx-3" icon outlined>
+                    <v-btn
+                        v-for="icon in bottomMenu"
+                        :key="icon.icon"
+                        class="mx-3"
+                        icon
+                        outlined
+                        @click="SocialBtn(icon.id)"
+                    >
                         <v-icon size="18px" :title="icon.title">{{ icon.icon }}</v-icon>
                     </v-btn>
                 </v-card-title>
@@ -79,8 +87,8 @@ export default {
             },
         ],
         bottomMenu: [
-            { title: "微信", color: "#66BC54", icon: "mdi-wechat" },
-            { title: "QQ", color: "#4FA5DB", icon: "mdi-qqchat" },
+            { id: 0, title: "微信", color: "#66BC54", icon: "mdi-wechat" },
+            { id: 1, title: "QQ", color: "#4FA5DB", icon: "mdi-qqchat" },
         ],
     }),
     methods: {
@@ -95,6 +103,18 @@ export default {
         switchTheme() {
             this.$store.commit("setTheme");
             this.$vuetify.theme.dark = this.$store.state.dark === true;
+        },
+        SocialBtn(id) {
+            switch (id) {
+                case 0:
+                    break;
+                case 1:
+                    window.location.href =
+                        "tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=444647486&website=www.oicqzone.com";
+                    break;
+                default:
+                    break;
+            }
         },
     },
 };

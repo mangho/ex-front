@@ -43,7 +43,7 @@ export default {
     }),
     mounted() {
         this.items[2].text = this.$route.query.title;
-        this.content=data.blogList.find(i=>i.id===this.$route.query.id).content
+        this.content=data.blogList.find(i=>i.id===this.$route.params.id).content
     },
 };
 </script>
